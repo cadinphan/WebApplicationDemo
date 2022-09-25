@@ -1,0 +1,108 @@
+﻿@*@model string*@
+
+@{
+    ViewData["Title"] = "Step Marker";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+@section Header{
+
+    <link href="~/css/StepMaker/MultiStep.min.css" rel="stylesheet" />
+    <link href="~/css/StepMaker/MultiStep-theme.min.css" rel="stylesheet" />
+    <link href="~/css/MyCss/fontawesome.css" rel="stylesheet" />
+    <link href="~/css/MyCss/DataLoad.css" rel="stylesheet" />
+}
+
+@section Footer{
+    <script src="~/bootstrap-5.1.3/js/bootstrap.js"></script>
+    <script src="~/js/MyJs/StepMaker/ProcessStep.js"></script>
+}
+
+<div id="process-step" class="multi-step container-fluid" data-id="process-step" tabindex="-1" role="dialog" aria-labelledby="process-stepTitle" aria-hidden="true">
+    <div class="multi-step" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="padding: 1rem 1rem 0rem 1rem">
+                <h5 class="modal-title" id="process-stepLongTitle"></h5>
+
+                <!--Process Stepper Status-->
+                <div class="modal-steps" style="border: 1px solid rgba(0,0,0,0.2)">
+                    <!--Step 1-->
+                    <div class="step current" data-step="1" data-step-skip="false">
+                        <label class="label top-label" style="color: #0092E0 " data-type="text">Step 1</label>
+                        <div class="dot"></div>
+                        <label class="label bottom-label"><img src="/Images/Icons/Step1-icon-color.png" /></label>
+                    </div>
+                    <!--Step 2-->
+                    <div class="step" data-step="2" data-step-skip="false">
+                        <label class="label top-label"><img src="/Images/Icons/cluster.png" /></label>
+                        <div class="dot" data-type="dot"></div>
+                        <label class="label bottom-label" data-type="text">Step 2</label>
+                    </div>
+                    <!--Step 3-->
+                    <div class="step" data-step="3" data-step-skip="false">
+                        <label class="label top-label" data-type="text">Step 3</label>
+                        <div class="dot" data-type="dot"></div>
+                        <label class="label bottom-label"><img src="/Images/Icons/target.png" /></label>
+                    </div>
+                    <!--Step 4-->
+                    <div class="step" data-step="4" data-step-skip="false">
+                        <label class="label top-label"><img src="/Images/Icons/offices.png" /></label>
+                        <div class="dot"></div>
+                        <label class="label bottom-label" data-type="text">Final Step</label>
+                    </div>
+                </div>
+                <!--End Process Stepper Status-->
+                <!--Content -->
+                <div class="modal-body" style="width: 100%; padding: 1rem 1rem 2.5rem 1rem;">
+
+                    <!--Start Form With Step 1-->
+                    <div class="step-content-container" style="width:100%">
+                        @{await Html.RenderPartialAsync("~/Views/StepMaker/PartialViews/_Step1_PV.cshtml");}
+                    </div>
+
+                    <br /><br />
+                    <!--Button-->
+                    <div class="buttons d-flex" style="justify-content: center">
+                        <button id="btnPrev" type="button" class="btn btn-sm prev-button d-none" style="padding: 0 10px 0 10px">
+                            <div class="ml-4">
+                                <img style="width:30px" src="/Images/Icons/prev-button-icon.png" />
+                            </div>
+                            <div class="text" style="width:60px">&ensp; Back</div>
+                        </button>
+                        <button id="btnNext" type="button" class="btn btn-sm next-button" style="padding: 0 10px 0 20px">
+                            <div class="text" style="width:45px">Next &ensp;</div>
+                            <div class="ml-4">
+                                <img style="width:30px" src="/Images/Icons/next-button-icon.png" />
+                            </div>
+                        </button>
+                        <button id="btnCancel" type="button" class="btn btn-sm cancel-button" data-toggle="modal" data-target="#exampleModal">
+                            <div class="text" style="width:60px">Cancel &ensp;</div>
+                            <div class="ml-4">
+                                <img style="width:25px" src="/Images/Icons/cancel-button-icon.png" />
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="btnCloseIDL" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Do you want to leave app?
+                </div>
+                <div class="modal-footer">
+                    <button id="btnYesIDL" type="button" class="btn btn-secondary" style="background-color:#0092e0">Yes</button>
+                    <button id="btnNoIDL" type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
